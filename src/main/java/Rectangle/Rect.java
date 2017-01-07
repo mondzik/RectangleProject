@@ -78,7 +78,7 @@ public class Rect {
 
     }
 
-    public double distanceBeetweenRectCenters(Rect rect) {
+    double distanceBeetweenRectCenters(Rect rect) {
         double xRect1center = (this.getX2() - this.getX1()) / 2 + this.getX2();
         double yRect1center = (this.getY2() - this.getY1()) / 2 + this.getY2();
         double xRect2center = (rect.getX2() - rect.getX1()) / 2 + rect.getX2();
@@ -87,24 +87,22 @@ public class Rect {
     }
 
 
-    public boolean crossing(Rect rect) {//ma sprawdzać czy sie przecinają
+    boolean crossing(Rect rect) {//ma sprawdzać czy sie przecinają
 
         boolean isCrossingInX = (this.getX1() <= rect.getX1() && this.getX3() >= rect.getX1()) || (this.getX1() <= rect.getX3() && this.getX3() >= rect.getX3());//sprawdza czy który z x1,x3 drugiego prostokąta zawiera sie między x1 a x3 drugiego, a potem analogicznie y-greki
         boolean isCrossingInY = (this.getY1() >= rect.getY1() && this.getY3() <= rect.getY1()) || (this.getY1() >= rect.getY3() && this.getY3() <= rect.getY3());
-        boolean isCrossing = isCrossingInX && isCrossingInY;
-        return isCrossing;
+        return isCrossingInX && isCrossingInY;
     }
 
 
 
-    public boolean contains(Rect rect) {//ma sprawdzać czy sie zawiera jeden w drugim
+    boolean contains(Rect rect) {//ma sprawdzać czy sie zawiera jeden w drugim
         boolean isInXAxis = (this.getX1() <= rect.getX1() && this.getX3() >= rect.getX1()) && (this.getX1() <= rect.getX3() && this.getX3() >= rect.getX3());//sprawdza czy który z x1,x3 drugiego prostokąta zawiera sie między x1 a x3 drugiego, a potem analogicznie y-greki
         boolean isInYAxis = (this.getY1() >= rect.getY1() && this.getY3() <= rect.getY1()) && (this.getY1() >= rect.getY3() && this.getY3() <= rect.getY3());
-        boolean isIn = isInXAxis && isInYAxis;
-        return isIn;
+        return isInXAxis && isInYAxis;
     }
 
-    public Rect commonFields(Rect rect) {//ma zwracać część wspólną
+    Rect commonFields(Rect rect) {//ma zwracać część wspólną
 
         Rect commonfield = new Rect(0, 0, 0, 0);
         if (this.crossing(rect)) {//sprawdzam czy sie pokrywają
@@ -141,6 +139,12 @@ public class Rect {
             commonfield = new Rect(x1CommonRect, y1CommonRect, x3CommonRect, y3CommonRect);
         }
         return commonfield;
+    }
+
+
+    void printCoordinates(){
+
+        System.out.println(this.getX1()+", "+this.getY1()+"; "+this.getX2()+", "+this.getY2()+"; "+this.getX3()+", "+this.getY3()+"; "+this.getX4()+", "+this.getY4()+"; ");
     }
 
 
