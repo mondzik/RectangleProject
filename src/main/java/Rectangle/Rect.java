@@ -96,7 +96,9 @@ public class Rect {
     }
 
     public boolean contains(Rect rect) {//ma sprawdzać czy sie zawiera jeden w drugim
-        boolean isIn = false;
+        boolean isInXAxis = (this.getX1() <= rect.getX1() && this.getX3() >= rect.getX1()) && (this.getX1() <= rect.getX3() && this.getX3() >= rect.getX3());//sprawdza czy który z x1,x3 drugiego prostokąta zawiera sie między x1 a x3 drugiego, a potem analogicznie y-greki
+        boolean isInYAxis = (this.getY1() >= rect.getY1() && this.getY3() <= rect.getY1()) && (this.getY1() >= rect.getY3() && this.getY3() <= rect.getY3());
+        boolean isIn = isInXAxis && isInYAxis;
         return isIn;
     }
 
