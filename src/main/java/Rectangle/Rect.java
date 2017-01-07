@@ -3,28 +3,28 @@ package Rectangle;
 
 public class Rect {
 
-    int x1;
-    int y1;
+    private int x1;
+    private int y1;
 
-    int x2;
-    int y2;    //określone koordynaty (przeciwległe)
+    private int x2;
+    private int y2;    //określone koordynaty (przeciwległe)
 
-    int x3;
-    int y3;
+    private int x3;
+    private int y3;
 
-    int x4;
-    int y4;
+    private int x4;
+    private int y4;
 
 
     public Rect() {//konstruktor z gotowymi koordynatami
-        x1 = 1;
-        y1 = 3;
-        x2 = 4;
-        y2 = 3;
-        x3 = 4;
-        y3 = 1;
-        x4 = 1;
-        y4 = 1;
+        setX1(1);
+        setY1(3);
+        setX2(4);
+        setY2(3);
+        setX3(4);
+        setY3(1);
+        setX4(1);
+        setY4(1);
 
 
     }
@@ -34,44 +34,44 @@ public class Rect {
 
         if (yA >= yB) {
             if (xA <= xB) {             //ustawiam pkty zgodnie ze wskazówkami zegara x1, y1 w lewym gornym rogu-> przeciwlegly to x3, y3
-                this.x1 = xA;
-                this.y1 = yA;
-                this.x2 = xB;
-                this.y2 = yA;
-                this.x3 = xB;
-                this.y3 = yB;
-                this.x4 = xA;
-                this.y4 = yB;
+                this.setX1(xA);
+                this.setY1(yA);
+                this.setX2(xB);
+                this.setY2(yA);
+                this.setX3(xB);
+                this.setY3(yB);
+                this.setX4(xA);
+                this.setY4(yB);
 
             } else {
-                this.x1 = xB;
-                this.y1 = yB;
-                this.x2 = xA;
-                this.y2 = yB;
-                this.x3 = xA;
-                this.y3 = yA;
-                this.x4 = xB;
-                this.y4 = yA;
+                this.setX1(xB);
+                this.setY1(yB);
+                this.setX2(xA);
+                this.setY2(yB);
+                this.setX3(xA);
+                this.setY3(yA);
+                this.setX4(xB);
+                this.setY4(yA);
             }
         } else {
             if (xA <= xB) {
-                this.x1 = xA;
-                this.y1 = yB;
-                this.x2 = xB;
-                this.y2 = yB;
-                this.x3 = xB;
-                this.y3 = yA;
-                this.x4 = xA;
-                this.y4 = yA;
+                this.setX1(xA);
+                this.setY1(yB);
+                this.setX2(xB);
+                this.setY2(yB);
+                this.setX3(xB);
+                this.setY3(yA);
+                this.setX4(xA);
+                this.setY4(yA);
             } else {
-                this.x1 = xB;
-                this.y1 = yA;
-                this.x2 = xA;
-                this.y2 = yA;
-                this.x3 = xA;
-                this.y3 = yB;
-                this.x4 = xB;
-                this.y4 = yB;
+                this.setX1(xB);
+                this.setY1(yA);
+                this.setX2(xA);
+                this.setY2(yA);
+                this.setX3(xA);
+                this.setY3(yB);
+                this.setX4(xB);
+                this.setY4(yB);
             }
 
         }
@@ -79,8 +79,8 @@ public class Rect {
     }
 
     public double distanceBeetweenRectCenters(Rect rect) {
-        double xRect1center = (this.x2 - this.x1) / 2 + this.x2;
-        double yRect1center = (this.y2 - this.y1) / 2 + this.y2;
+        double xRect1center = (this.getX2() - this.getX1()) / 2 + this.getX2();
+        double yRect1center = (this.getY2() - this.getY1()) / 2 + this.getY2();
         double xRect2center = (rect.getX2() - rect.getX1()) / 2 + rect.getX2();
         double yRect2center = (rect.getY2() - rect.getY1()) / 2 + rect.getY2();
         return Math.hypot(xRect1center - xRect2center, yRect1center - yRect2center);
@@ -94,6 +94,8 @@ public class Rect {
         boolean isCrossing = isCrossingInX && isCrossingInY;
         return isCrossing;
     }
+
+
 
     public boolean contains(Rect rect) {//ma sprawdzać czy sie zawiera jeden w drugim
         boolean isInXAxis = (this.getX1() <= rect.getX1() && this.getX3() >= rect.getX1()) && (this.getX1() <= rect.getX3() && this.getX3() >= rect.getX3());//sprawdza czy który z x1,x3 drugiego prostokąta zawiera sie między x1 a x3 drugiego, a potem analogicznie y-greki
