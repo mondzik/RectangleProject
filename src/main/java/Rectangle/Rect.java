@@ -88,7 +88,10 @@ public class Rect {
 
 
     public boolean crossing(Rect rect) {//ma sprawdzać czy sie przecinają
-        boolean isCrossing = false;
+
+        boolean isCrossingInX = (this.getX1() <= rect.getX1() && this.getX3() >= rect.getX1()) || (this.getX1() <= rect.getX3() && this.getX3() >= rect.getX3());//sprawdza czy który z x1,x3 drugiego prostokąta zawiera sie między x1 a x3 drugiego, a potem analogicznie y-greki
+        boolean isCrossingInY = (this.getY1() >= rect.getY1() && this.getY3() <= rect.getY1()) || (this.getY1() >= rect.getY3() && this.getY3() <= rect.getY3());
+        boolean isCrossing = isCrossingInX && isCrossingInY;
         return isCrossing;
     }
 
@@ -98,7 +101,41 @@ public class Rect {
     }
 
     public Rect commonFields(Rect rect) {//ma zwracać część wspólną
+
         Rect commonfield = new Rect(0, 0, 0, 0);
+        if (this.crossing(rect)) {//sprawdzam czy sie pokrywają
+            int x1CommonRect;
+            int y1CommonRect;
+            int x3CommonRect;
+            int y3CommonRect;
+
+            if (this.getX1() >= rect.getX1()) {//x1,y1 ogranicza z prawej i od gory wiec wybieram, x z prawej i y nizej)
+                x1CommonRect = this.getX1();
+            } else {
+                x1CommonRect = rect.getX1();
+            }
+
+            if (this.getY1() <= rect.getY1()) {
+                y1CommonRect = this.getY1();
+            } else {
+                y1CommonRect = rect.getY1();
+            }
+
+            //x3 y3 ogranicza na odwrót
+            if (this.getX3() <= rect.getX3()) {
+                x3CommonRect = this.getX3();
+            } else {
+                x3CommonRect = rect.getX3();
+            }
+            if (this.getY3() >= rect.getY3()) {
+                y3CommonRect = this.getY3();
+            } else {
+                y3CommonRect = rect.getY3();
+            }
+
+
+            commonfield = new Rect(x1CommonRect, y1CommonRect, x3CommonRect, y3CommonRect);
+        }
         return commonfield;
     }
 
