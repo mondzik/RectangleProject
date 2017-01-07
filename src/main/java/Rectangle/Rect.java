@@ -92,6 +92,11 @@ public class Rect {
         return isCrossing;
     }
 
+    public boolean contains(Rect rect) {//ma sprawdzać czy sie zawiera jeden w drugim
+        boolean isIn = false;
+        return isIn;
+    }
+
     public Rect commonFields(Rect rect) {//ma zwracać część wspólną
         Rect commonfield = new Rect(0, 0, 0, 0);
         return commonfield;
